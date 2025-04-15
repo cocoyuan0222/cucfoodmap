@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <title>图片分页展示</title>
@@ -40,8 +40,9 @@
 <body>
 
   <h1>图片分页展示</h1>
+
   <div id="image-container">
-    <img id="current-image" src="1.jpg" alt="图片1">
+    <img id="current-image" src="1.webp" alt="图片1">
   </div>
 
   <div class="btn-group">
@@ -50,7 +51,7 @@
   </div>
 
   <script>
-    const totalImages = 12;
+    const totalImages = 9; // 共有9张图片
     let currentIndex = 1;
 
     const imgElement = document.getElementById("current-image");
@@ -58,10 +59,10 @@
     const nextBtn = document.getElementById("next-btn");
 
     function updateImage() {
-      imgElement.src = `${currentIndex}.jpg`;
+      imgElement.src = `${currentIndex}.webp`;
       imgElement.alt = `图片${currentIndex}`;
-      prevBtn.disabled = currentIndex === 1;
-      nextBtn.disabled = currentIndex === totalImages;
+      prevBtn.style.display = currentIndex === 1 ? 'none' : 'inline-block';
+      nextBtn.style.display = currentIndex === totalImages ? 'none' : 'inline-block';
     }
 
     function prevImage() {
@@ -78,9 +79,8 @@
       }
     }
 
-    updateImage(); // 初始状态更新
+    updateImage(); // 初始化
   </script>
 
 </body>
 </html>
-
