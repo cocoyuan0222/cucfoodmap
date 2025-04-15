@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图片分页展示</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    #image-container {
+      margin: 20px 0;
+    }
+    img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .btn-group {
+      margin-top: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      margin: 0 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>图片分页展示</h1>
+  <div id="image-container">
+    <img id="current-image" src="1.jpg" alt="图片1">
+  </div>
+
+  <div class="btn-group">
+    <button id="prev-btn" onclick="prevImage()">上一页</button>
+    <button id="next-btn" onclick="nextImage()">下一页</button>
+  </div>
+
+  <script>
+    const totalImages = 12;
+    let currentIndex = 1;
+
+    const imgElement = document.getElementById("current-image");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    function updateImage() {
+      imgElement.src = `${currentIndex}.jpg`;
+      imgElement.alt = `图片${currentIndex}`;
+      prevBtn.disabled = currentIndex === 1;
+      nextBtn.disabled = currentIndex === totalImages;
+    }
+
+    function prevImage() {
+      if (currentIndex > 1) {
+        currentIndex--;
+        updateImage();
+      }
+    }
+
+    function nextImage() {
+      if (currentIndex < totalImages) {
+        currentIndex++;
+        updateImage();
+      }
+    }
+
+    updateImage(); // 初始状态更新
+  </script>
+
+</body>
+</html>
 
